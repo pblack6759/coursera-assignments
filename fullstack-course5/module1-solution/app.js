@@ -8,29 +8,41 @@ LunchCheckController.$inject = ['$scope', '$filter'];
 function LunchCheckController($scope, $filter) {
   $scope.lunchSelection = "";
   $scope.message = "";
+  $scope.status = "";
 
   // function to address the heart of the assignment. Users should only be able
-  // to enter 3 choices maximum to pass. Provide an error message in the event
-  // the user enters more than 3 or in the event nothing at all is entered.
+  // to enter 3 choices maximum to pass.
   $scope.checkLunchItems = function() {
-    // if there's nothing to process, bail out
+    // make sure at least something was entered
     if ($scope.lunchSelection) {
-      // apply a couple regular expressions to normalize the data before
-      // attempting to call the String.split() function
-      //
-      // first, replace any single comma followed by any amount of whitespace,
-      // such as [, ,  ,   ,    ,]
-      //
-      // second, replace any instances of multiple commas with no whitespace
-      // at all, such as [,,]
-      //
-      // TODO: There should be a suitable monolithic regex to obviate the need
-      // to make two separate replace calls, I just can't devise one that works!
-      var normalizedLunchSelection = $scope.lunchSelection
-        .replace(/\s*,\s*/g, ",")
-        .replace(/,+/g, ",");
+      // bonus: changing status will update font/border color
+      $scope.status = "success";
 
-      // now that the data has been normalized, convert the comma delimited
+      // bonus: assignment doesn't require this but since it's optional I'll try
+      // I'm applying several regular expressions to normalize the data prior to
+      // splitting the String into an array:
+      //
+      // first, trim any whitespace around commas:
+      // "apple, ,  ,banana" -> "apple,banana"
+      //
+      // second, replace any instances of multiple commas with no text at all:
+      // "apple,,banana" -> "apple,banana"
+      //
+      // third, remove any leading commas:
+      // ",,,,apple,banana" -> "apple,banana"
+      //
+      // fourth, remove any trailing commas:
+      // "apple,banana,,,," -> "apple,banana"
+      //
+      // TODO: There should be a suitable single regex to obviate the need
+      // to make 4 chained replace calls, I just really suck at these!
+      var normalizedLunchSelection = $scope.lunchSelection
+       .replace(/\s*,\s*/g, ",")
+       .replace(/,+/g, ",")
+       .replace(/^,+/g, "")
+       .replace(/,+$/g, "");
+
+      // now that the data has been normalized, split the comma delimited
       // String into an array of Strings
       var splitLunchItems = normalizedLunchSelection.split(",");
       if (splitLunchItems.length <= 3) {
@@ -38,11 +50,10 @@ function LunchCheckController($scope, $filter) {
       } else {
         $scope.message = "Too much!";
       }
-      console.log(splitLunchItems);
     } else {
       $scope.message = "Please enter data first...";
+      $scope.status = "error";
     }
   }
 }
-
 })();

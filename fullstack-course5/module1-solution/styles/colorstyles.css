@@ -1,0 +1,8 @@
+.error{color: #ff0000;}
+.success{color: #00ff00;}
+.error-border {
+  border: 1px solid #ff0000;
+}
+.success-border {
+  border: 1px solid #00ff00;
+}
