@@ -1,0 +1,11 @@
+<h3>Items Found: {{ found.length }}</h3>
+<table>
+  <tr ng-repeat="item in found">
+    <td>{{ item.name }}</td>
+    <td>{{ item.short_name }}</td>
+    <td>{{ item.description }}</td>
+    <td>
+      <button class="btn btn-primary" ng-click="onRemove({index: $index});">Don't want this one!</button>
+    </td>
+  </tr>
+</table>
