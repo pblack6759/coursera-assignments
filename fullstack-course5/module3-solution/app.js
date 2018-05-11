@@ -23,13 +23,17 @@ NarrowItDownController.inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var list = this;
   list.searchTerm = "";
-  list.found = [];
 
   list.narrowItDown = function() {
-    var promise = MenuSearchService.matchMenuItems(list.searchTerm);
-    promise.then(function(response) {
-      list.found = response;
-    });
+
+    if (list.searchTerm.length > 0) {
+      var promise = MenuSearchService.matchMenuItems(list.searchTerm);
+      promise.then(function(response) {
+        list.found = response;
+      });
+    } else {
+      list.found = [];
+    }
   };
 
   list.onRemove = function(index) {
