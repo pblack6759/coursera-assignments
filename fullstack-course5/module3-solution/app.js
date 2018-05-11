@@ -23,6 +23,7 @@ NarrowItDownController.inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var list = this;
   list.searchTerm = "";
+  list.found = [];
 
   list.narrowItDown = function() {
     var promise = MenuSearchService.matchMenuItems(list.searchTerm);
