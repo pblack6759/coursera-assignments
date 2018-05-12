@@ -11,7 +11,6 @@
 <body ng-controller="NarrowItDownController as list">
    <div class="container">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
-
     <div class="form-group">
       <input type="text" placeholder="search term" class="form-control" ng-model="list.searchTerm">
     </div>
@@ -22,6 +21,5 @@
   <div class="container">
     <found-items found="list.found" on-remove=list.onRemove(index)></found-items>
   </div>
-
 </body>
 </html>
