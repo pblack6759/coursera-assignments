@@ -1,8 +1,5 @@
-<a ui-sref="home">Home</a> &lt;
-  <span><a ui-sref="categories">Categories</a></span> &lt;
-   <span>{{ itemsCtrl.categoryName }}</span>
 <ol>
-  <li ng-repeat="item in itemsCtrl.items">
+  <li ng-repeat="item in $ctrl.items">
     <h4>{{ item.name }}</h4>
     {{ item.description}}
   </li>

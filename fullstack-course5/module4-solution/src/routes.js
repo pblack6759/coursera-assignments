@@ -19,10 +19,10 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     templateUrl: 'src/menuapp/templates/home.template.html'
   })
 
-  // Categories Page
+  // Categories Page.
   .state('categories', {
     url: '/categories',
-    templateUrl: 'src/menuapp/templates/categories.template.html',
+    templateUrl: 'src/menuapp/templates/main-categories.template.html',
     controller: 'CategoriesController as categoriesCtrl',
     resolve: {
       categories: ['MenuDataService', function (MenuDataService) {
@@ -31,9 +31,11 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     }
   })
 
+  // Items Page, which will display items within the category selected
+  // from the categories page above.
   .state('items', {
     url: '/items/{short_name}',
-    templateUrl: 'src/menuapp/templates/items.template.html',
+    templateUrl: 'src/menuapp/templates/main-items.template.html',
     controller: 'ItemsController as itemsCtrl',
     resolve: {
       items: ['MenuDataService', '$stateParams', function (MenuDataService, $stateParams) {
