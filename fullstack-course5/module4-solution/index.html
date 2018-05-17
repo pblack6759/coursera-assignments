@@ -2,16 +2,15 @@
 <html ng-app='MenuApp'>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- <title>No Cookie Shopping List</title> -->
     <title>Mod 4 in Progress</title>
   </head>
   <body>
-    <!-- <h1>Welcome to Premade No Cookie Shopping List</h1> -->
-
-    <ui-view></ui-view>
-
-    <loading-spinner></loading-spinner>
+    <div class="content">
+      <ui-view></ui-view>
+      <loading-spinner></loading-spinner>
+    </div>
 
     <!-- Libraries -->
     <script src="lib/angular.min.js"></script>
@@ -25,7 +24,7 @@
     <!-- Routes -->
     <script src="src/routes.js"></script>
 
-    <!-- 'ShoppingList' module artifacts -->
+    <!-- 'MenuApp' module artifacts -->
     <script src="src/menuapp/categories.controller.js"></script>
     <script src="src/menuapp/items.controller.js"></script>
     <script src="src/menuapp/categories.component.js"></script>
